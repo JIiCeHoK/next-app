@@ -1,0 +1,30 @@
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.questionText {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.answers {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 50%;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}

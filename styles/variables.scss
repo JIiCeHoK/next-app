@@ -1,0 +1,18 @@
+$color-hover: #00ead9;
+$color-dark: #231f20;
+$color-default: lighten($color-dark, 30%);
+$color-disabled: lighten($color-dark, 60%);
+
+$shadow-default: 0px 15px 40px rgba(0, 0, 0, 0.1);
+$shadow-hover: 0px 8px 20px rgba(0, 0, 0, 0.06);
+$shadow-checked: 0px 0px 4px #bdbdbd;
+$shadow-disabled: 0px 8px 20px rgba(0, 0, 0, 0.06);
+
+%font-text {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+$font_text: 400 "Roboto" normal 14px 18px;

@@ -1,0 +1,25 @@
+@import "./variables";
+
+%shared {
+    cursor: pointer;
+    margin: 10px;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 12px;
+    border-radius: 6px;
+    color: white;
+    background-color: $color-hover;
+    max-width: max-content;
+}
+
+.container {
+    @extend %shared;
+    &_disable {
+        @extend %shared;
+        cursor: default;
+        background-color: $color-disabled;
+    }
+}
