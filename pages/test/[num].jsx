@@ -7,15 +7,13 @@ import Timer from "../../components/timer";
 import styles from "../../styles/test.module.scss";
 
 let answers = [];
-let test = [1, 2, 3];
 
 export default function Test({ data }) {
     const [test, setTest] = useState(data);
     const [currentCheckedAnswer, setCurrentCheckedAnswer] = useState("");
     const [answer, setAnswer] = useState("");
     const [complete, setComplete] = useState(false);
-
-    //console.log(data);
+    const [results, setResults] = useState([]);
 
     useEffect(() => {
         if (answer != "") {
@@ -25,13 +23,19 @@ export default function Test({ data }) {
     }, [answer]);
     useEffect(() => {
         if (complete != false) {
-            console.log(complete);
+            let res = [];
+            for (let index = 0; index < answers.length; index++) {
+                console.log(answers[0], data.answers[0]);
+                if (answers[index] === data.answers[index]) {
+                    res.push("Верно");
+                } else {
+                    res.push("Неверно");
+                }
+            }
+            setResults(res);
+            res = [];
         }
     }, [complete]);
-
-    const listItems = test.map((item) => {
-        item;
-    });
 
     return (
         <div className={styles.container}>
@@ -52,7 +56,7 @@ export default function Test({ data }) {
             ) : (
                 <>
                     <div>Тест завершён</div>
-                    <div>{listItems}</div>
+                    {results.map((item) => item)}
                 </>
             )}
         </div>

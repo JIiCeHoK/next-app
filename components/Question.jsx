@@ -58,9 +58,15 @@ export default function Question(props) {
                 </form>
                 <div className={styles.buttons}>
                     {currentQuestion === props.questions.length - 1 ? (
-                        <div onClick={completeTest}>Закончить</div>
-                    ) : (
+                        props.currentCheckedAnswer ? (
+                            <div onClick={completeTest}>Закончить</div>
+                        ) : (
+                            <div className={styles.disabled}>Закончить</div>
+                        )
+                    ) : props.currentCheckedAnswer ? (
                         <div onClick={nextQuestion}>Следующий вопрос</div>
+                    ) : (
+                        <div className={styles.disabled}>Следующий вопрос</div>
                     )}
                 </div>
             </div>
