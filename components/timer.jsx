@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 
-export default function Timer({ time }) {
-    const [t, setT] = useState(600);
+export default function Timer(props) {
+    const [timeRemain, setTimeRemain] = useState(props.time);
 
-    const calcTime = (time) => {
-        let timeStr = (time).toString();
-        
-        if (time <= 0) {
-            return `00:00`;
-        }
-        switch (timeStr.length) {
-            case 1:
-                return time <= 0 ? "00:00" : `00:0${timeStr}`;
-            case 2:
-                return time < 60 ? `00:${timeStr}` : `01:00`;
-            default:
-                return `${timeStr}`;
-        }
+    const calcTime = () => {
+        let minutes = Math.floor(timeRemain / 60);
+        let seconds = timeRemain % 60;
+
+        // switch ((minutes.toString().length, seconds.toString().length)) {
+        //     case minutes.toString().length < 2: {
+        //         return `0${minutes}:${seconds}`;
+        //     }
+        //     case seconds.toString().length < 2: {
+        //         return `${minutes}:0${seconds}`;
+        //     }
+        //     case seconds.toString().length < 2 &&
+        //         minutes.toString().length < 2: {
+        //         return `0${minutes}:0${seconds}`;
+        //     }
+        //     default: {
+        //         return `${minutes}:${seconds}`;
+        //     }
+        // }
+        return `${minutes}:${seconds}`;
     };
 
     useEffect(() => {
         const tick = () => {
-            setT((el) => el - 1);
+            setTimeRemain(timeRemain - 1);
         };
-        if (t > 0) {
+        if (timeRemain > 0) {
             setTimeout(tick, 1000);
-        } else onFinish();
-    },[t]);
+        } else if (timeRemain === 0) {
+            props.setComplete(true);
+        }
+    }, [timeRemain]);
 
-    return <div>Времени осталось - {calcTime(t)}</div>;
+    return <div>Времени осталось - {calcTime()}</div>;
 }

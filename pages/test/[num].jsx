@@ -43,7 +43,7 @@ export default function Test({ data }) {
             <a onClick={() => router.push("/")}>Вернуться назад</a>
             {!complete ? (
                 <>
-                    <Timer time={data.time} />
+                    <Timer time={data.time} setComplete={setComplete} />
                     <Question
                         questions={test.questions}
                         currentCheckedAnswer={currentCheckedAnswer}
