@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTest } from "../api/hello";
+import { useRouter } from "next/router";
 
 import Question from "../../components/Question";
 import Timer from "../../components/timer";
@@ -9,6 +10,8 @@ import styles from "../../styles/test.module.scss";
 let answers = [];
 
 export default function Test({ data }) {
+    const router = useRouter();
+
     const [test, setTest] = useState(data);
     const [currentCheckedAnswer, setCurrentCheckedAnswer] = useState("");
     const [answer, setAnswer] = useState("");
@@ -18,14 +21,12 @@ export default function Test({ data }) {
     useEffect(() => {
         if (answer != "") {
             answers.push(answer);
-            console.log(answers);
         }
     }, [answer]);
     useEffect(() => {
         if (complete != false) {
             let res = [];
             for (let index = 0; index < answers.length; index++) {
-                console.log(answers[0], data.answers[0]);
                 if (answers[index] === data.answers[index]) {
                     res.push("Верно");
                 } else {
@@ -37,10 +38,15 @@ export default function Test({ data }) {
         }
     }, [complete]);
 
+    function back() {
+        router.push("/");
+        answers = [];
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.title}>{test.title}</div>
-            <a onClick={() => router.push("/")}>Вернуться назад</a>
+            <a onClick={back}>Вернуться назад</a>
             {!complete ? (
                 <>
                     <Timer time={data.time} setComplete={setComplete} />
@@ -56,7 +62,13 @@ export default function Test({ data }) {
             ) : (
                 <>
                     <div>Тест завершён</div>
-                    {results.map((item) => item)}
+                    <div>
+                        {results.map((item, index) => (
+                            <li key={index}>
+                                Вопрос {index + 1} - {item}
+                            </li>
+                        ))}
+                    </div>
                 </>
             )}
         </div>

@@ -64,7 +64,9 @@ export default function Question(props) {
                             <div className={styles.disabled}>Закончить</div>
                         )
                     ) : props.currentCheckedAnswer ? (
-                        <div onClick={nextQuestion}>Следующий вопрос</div>
+                        <div onClick={nextQuestion} className={styles.next}>
+                            Следующий вопрос
+                        </div>
                     ) : (
                         <div className={styles.disabled}>Следующий вопрос</div>
                     )}

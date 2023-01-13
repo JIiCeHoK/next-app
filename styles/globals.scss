@@ -9,6 +9,7 @@ body {
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 18px;
     min-height: 100vh;
+    background-color: $color-disabled;
 }
 nav,
 footer,
@@ -34,7 +35,7 @@ button {
 a {
     cursor: pointer;
     text-decoration: none;
-    &:hover{
+    &:hover {
         color: $color-hover;
     }
 }
